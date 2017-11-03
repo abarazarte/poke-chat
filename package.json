@@ -4,8 +4,15 @@
   "description": "React Demo Application",
   "main": "index.js",
   "scripts": {
+    "build": "browserify app.js > build.js -t babelify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "abarazarte",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^5.5.8",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
+    "react": "~0.13.3"
+  }
 }
