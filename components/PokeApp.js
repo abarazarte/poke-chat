@@ -2,6 +2,7 @@
  *  Module dependencies
  */
 
+import uid from 'uid';
 import React from 'react';
 import PokeTable from './PokeTable';
 import PokeChat from './PokeChat';
@@ -17,9 +18,10 @@ export default class PokeApp extends React.Component {
   }
 
   onGrowl(name) {
-    let message = `${name}, ${name}`;
+    let text = `${name}, ${name}`;
     let messages = this.state.messages;
-    messages.push({ text: message });
+    let message = { id: uid(), text: text };
+    messages.push(message);
     this.setState({ messages: messages });
   }
 
