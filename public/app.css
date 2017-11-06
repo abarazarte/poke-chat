@@ -91,3 +91,18 @@ html, body, #container{
     overflow: scroll;
 }
 
+.message-animation-enter{
+    opacity: 0;
+    transition: opacity .5s ease-in;
+}
+.message-animation-enter.message-animation-enter-active{
+    opacity: 1;
+}
+
+.message-animation-leave{
+    opacity: 1;
+    transition: opacity .5s ease-out;
+}
+.message-animation-leave.message-animation-leave-active{
+    opacity: 0;
+}
