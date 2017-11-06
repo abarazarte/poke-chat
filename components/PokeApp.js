@@ -4,6 +4,7 @@
 
 import uid from 'uid';
 import React from 'react';
+import $ from 'jquery';
 import PokeTable from './PokeTable';
 import PokeChat from './PokeChat';
 
@@ -12,9 +13,16 @@ export default class PokeApp extends React.Component {
     super(props);
 
     this.state = {
-      messages: []
+      messages: [],
+      pokemons: []
     };
     this.onGrowl = this.onGrowl.bind(this);
+  }
+
+  componentWillMount() {
+    $.get('/api/pokemons', (pokemons) => {
+      this.setState({ pokemons: pokemons });
+    });
   }
 
   onGrowl(name) {
@@ -26,15 +34,12 @@ export default class PokeApp extends React.Component {
   }
 
   render() {
-    const pokemons = [
-      { number: 1, name: 'Bulbasaur' },
-      { number: 2, name: 'Ivysaur' },
-      { number: 3, name: 'Venesaur' }
-    ];
-
-    return <div className="pokeapp">
-      <PokeTable pokemons={pokemons} onGrowl={this.onGrowl}/>
-      <PokeChat messages={this.state.messages}/>
-    </div>;
+    if(this.state.pokemons.length){
+      return <div className="pokeapp">
+        <PokeTable pokemons={this.state.pokemons} onGrowl={this.onGrowl}/>
+        <PokeChat messages={this.state.messages}/>
+      </div>;
+    }
+    return <p>Cargando... </p>;
   }
 }

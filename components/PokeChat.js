@@ -10,7 +10,7 @@ const { CSSTransitionGroup } = React.addons;
 export default class PokeChat extends React.Component {
   render() {
     return <ul className = "pokechat" >
-      <ReactCSSTransitionGroup transitionName = "message-animation" > 
+      <CSSTransitionGroup transitionName = "message-animation" > 
         {
           this.props.messages.map((message) => {
             return <PokeMessage key = {
@@ -22,7 +22,7 @@ export default class PokeChat extends React.Component {
             />;
           })
         } 
-      </ReactCSSTransitionGroup> 
+      </CSSTransitionGroup> 
     </ul>;
   }
 }

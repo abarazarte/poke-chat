@@ -5,12 +5,19 @@
 import express from 'express';
 import http from 'http';
 import engine from 'socket.io';
+import dbapi from './db-api';
 
 const port = 3000;
 const app = express();
 
 // Static route
 app.use('/', express.static(__dirname + '/public'));
+
+app.get('/api/pokemons', (req, res) => {
+  dbapi.pokemons.find((pokemons) => {
+    res.json(pokemons);
+  });
+});
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
